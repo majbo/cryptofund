@@ -28,13 +28,7 @@ export class DataService {
       }));
     }
    
-    return Promise.all(promises).then(chartDatas => {
-      for (let chartData of chartDatas) {
-        
-      }
-
-      return chartDatas;
-    });
+    return Promise.all(promises);
   }
 
   public GetCoinPositionData() : Promise<ICoinPositionData>{
@@ -120,10 +114,12 @@ export class DataService {
 
   private getChartDataPoint(currency: string, quantity: number, date: Date) : Promise<IChartDataPoint> {
     return this.getHistoricalValue(currency, date).then(value => {
-      return {
-        t: date,
-        y: value * quantity
-      };
+      return this.getExchangeRate(date).then(exchangeRate => {
+        return {
+          t: date,
+          y: value * quantity * exchangeRate
+        };
+      });
     });
   }
 
