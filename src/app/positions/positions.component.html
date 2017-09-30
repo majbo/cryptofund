@@ -1,4 +1,4 @@
-<h1>Positions</h1>
+<h2>Positions</h2>
 <table class="table">
     <thead>
       <tr>
@@ -12,27 +12,30 @@
         <th style="text-align: center">Profit %</th>
       </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let position of CoinPositions" >
+    <tbody *ngIf="initialized">
+        <tr *ngFor="let position of CoinPositionsData.CoinPositions">
         <th scope="row">{{position.Key}}</th>
         <td style="text-align: left">{{position.Title}}</td>
         <td style="text-align: right">{{position.Quantity}}</td>
         <td style="text-align: right">{{position.InitialPrice | number:'1.0-2'}}</td>
         <td style="text-align: right">{{position.CurrentPrice | number:'1.0-2'}}</td>
         <td style="text-align: right">{{position.Profit | number:'1.0-2'}}</td>
-        <td style="text-align: right">{{position.ProfitAmount | number:'1.0-2'}}</td>
-        <td style="text-align: right">{{position.ProfitPercentage | number:'1.0-2'}}</td>
+        <td [ngClass]="{'table-success': position.Profit > 0, 'table-danger': position.Profit < 0}"
+         style="text-align: right">{{position.ProfitAmount | number:'1.0-2'}}</td>
+        <td [ngClass]="{'table-success': position.Profit > 0, 'table-danger': position.Profit < 0}"
+         style="text-align: right">{{position.ProfitPercentage | number:'1.0-2'}}</td>
       </tr>
-      <!-- <tr [ngClass]="{'table-success': position.Profit > 0, 'table-danger': position.Profit < 0}"> -->
-        <tr>
+      <tr >
         <th></th>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
         <td style="text-align: right"><strong>Total: </strong></td>
-        <td style="text-align: right"><strong>{{4678 | number:'1.0-2'}} CHF</strong></td>
-        <td style="text-align: right"><strong>15%</strong></td>
+        <td [ngClass]="{'table-success': CoinPositionsData.TotalProfitAmount > 0, 'table-danger': CoinPositionsData.TotalProfitAmount < 0}"
+          style="text-align: right" ><strong>{{CoinPositionsData.TotalProfitAmount | number:'1.0-2'}} CHF</strong></td>
+        <td [ngClass]="{'table-success': CoinPositionsData.TotalProfitAmount > 0, 'table-danger': CoinPositionsData.TotalProfitAmount < 0}"
+        style="text-align: right" ><strong>{{CoinPositionsData.TotalProfitPercentage | number:'1.0-2'}}</strong></td>
       </tr>
     </tbody>
   </table>
