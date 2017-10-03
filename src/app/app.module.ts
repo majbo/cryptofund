@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -9,8 +11,7 @@ import { ChartComponent } from './chart/chart.component';
 
 import { StaticData } from './static-data';
 import { DataService } from './data-service.service';
-import { HttpModule } from '@angular/http';
-import { ChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({

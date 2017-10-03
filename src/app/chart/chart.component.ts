@@ -20,12 +20,12 @@ export class ChartComponent implements OnInit {
         type: 'time',
         time: {
           displayFormats: {
-              quarter:  'day'
+              hour:  'MMM D'
           }
         },
-        distribution: 'series',
+        distribution: 'linear',
         ticks: {
-          source: 'auto'
+          source: 'labels'
         }
       }],
       yAxes: [{
