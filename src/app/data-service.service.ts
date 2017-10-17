@@ -9,16 +9,19 @@ export class DataService {
   
   constructor(private http: Http) { }
 
-  private getCurrentValue(currency: string) : Promise<number>{
+  public getCurrentValue(currency: string) : Promise<number>{
     const url = `https://min-api.cryptocompare.com/data/price?fsym=${currency}&tsyms=USD`;
 
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().USD as number)
+      .then(response => {
+        let json = response.json();
+        return json.USD as number;
+      })
       .catch(this.handleError);
   }
 
-  private getExchangeRate(date?: Date) : Promise<number>{
+  public getExchangeRate(date?: Date) : Promise<number>{
     let url: string;
     if (date){
       let dateString = moment(date).format("YYYY-MM-DD");
@@ -32,14 +35,15 @@ export class DataService {
       .catch(this.handleError);
   }
 
-  private getHistoricalValue(currency: string, date: Date){
+  public getHistoricalValue(currency: string, date: Date){
     const timeStamp = moment(date).format("X");
     const url = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${currency}&tsyms=USD&ts=${timeStamp}`;
     
     return this.http.get(url)
     .toPromise()
     .then(response => {
-      return response.json()[currency].USD as number;
+      let json = response.json();
+      return json[currency].USD as number;
     })
     .catch(this.handleError);
   }

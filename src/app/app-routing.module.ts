@@ -5,8 +5,9 @@ import { ChartComponent } from './chart/chart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/positions', pathMatch: 'full' },
+  { path: 'chart', redirectTo: '/positions', pathMatch: 'full' },
   { path: 'positions', component: PositionsComponent },
-  { path: 'chart', component: ChartComponent },
+  // { path: 'chart', component: ChartComponent },
 ];
 
 @NgModule({
