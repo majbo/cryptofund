@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICoinPosition } from '../icoin-position';
-import { DataService } from '../data-service.service';
 import { ICoinPositionData } from '../icoin-position-data';
+import { PositionService } from '../position-service.service';
 
 @Component({
   selector: 'app-positions',
@@ -11,15 +11,13 @@ import { ICoinPositionData } from '../icoin-position-data';
 
 export class PositionsComponent implements OnInit {
   public initialized = false;
-  private DataService: DataService;
+  private PositionService: PositionService;
   CoinPositionsData: ICoinPositionData;
 
-  constructor(dataService: DataService) { 
-    this.DataService = dataService;
-  }
+  constructor(private positionService: PositionService) { }
 
   ngOnInit() {
-    this.DataService.GetCoinPositionData().then(data => {
+    this.positionService.GetCoinPositionData().then(data => {
       this.CoinPositionsData = data;
       this.initialized = true;
     } );

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { DataService } from '../data-service.service';
+import { ChartService } from '../chart-service.service';
 
 @Component({
   selector: 'app-chart',
@@ -37,10 +38,10 @@ export class ChartComponent implements OnInit {
     }
   }
 
-  constructor(private dataService: DataService) { }
+  constructor(private chartService: ChartService) { }
 
   ngOnInit() {
-     this.dataService.GetChartData().then(chartDatas => {
+     this.chartService.GetChartData().then(chartDatas => {
       for (let chartData of chartDatas) {
         this.chartDatasets.push({
           label: chartData.Key,
