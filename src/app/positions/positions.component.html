@@ -1,37 +1,37 @@
 <h2>Positions</h2>
-<table class="table">
+<table class="table .table-responsive">
     <thead>
       <tr>
         <th></th>
-        <th style="text-align: center">Title</th>
-        <th style="text-align: center">Quantity</th>
-        <th style="text-align: center">Buy Price</th>
-        <th style="text-align: center">Current Price</th>
-        <th style="text-align: center">Profit (CHF)</th>
+        <th class="d-none d-lg-table-cell" style="text-align: center">Title</th>
+        <th class="d-none d-lg-table-cell" style="text-align: center">Quantity</th>
+        <th class="d-none d-lg-table-cell" style="text-align: center">Buy Price</th>
+        <th class="d-none d-lg-table-cell" style="text-align: center">Current Price</th>
+        <th class="d-none d-lg-table-cell" style="text-align: center">Profit (CHF)</th>
         <th style="text-align: center">Profit amount (CHF)</th>
         <th style="text-align: center">Profit %</th>
       </tr>
     </thead>
     <tbody *ngIf="initialized">
-        <tr *ngFor="let position of CoinPositionsData.CoinPositions">
+      <tr *ngFor="let position of CoinPositionsData.CoinPositions">
         <th scope="row">{{position.Key}}</th>
-        <td style="text-align: left">{{position.Title}}</td>
-        <td style="text-align: right">{{position.Quantity}}</td>
-        <td style="text-align: right">{{position.InitialPrice | number:'1.0-2'}}</td>
-        <td style="text-align: right">{{position.CurrentPrice | number:'1.0-2'}}</td>
-        <td style="text-align: right">{{position.Profit | number:'1.0-2'}}</td>
+        <td class="d-none d-lg-table-cell" style="text-align: left">{{position.Title}}</td>
+        <td class="d-none d-lg-table-cell" style="text-align: right">{{position.Quantity}}</td>
+        <td class="d-none d-lg-table-cell" style="text-align: right">{{position.InitialPrice | number:'1.0-2'}}</td>
+        <td class="d-none d-lg-table-cell" style="text-align: right">{{position.CurrentPrice | number:'1.0-2'}}</td>
+        <td class="d-none d-lg-table-cell" style="text-align: right">{{position.Profit | number:'1.0-2'}}</td>
         <td [ngClass]="{'table-success': position.Profit > 0, 'table-danger': position.Profit < 0}"
          style="text-align: right">{{position.ProfitAmount | number:'1.0-2'}}</td>
         <td [ngClass]="{'table-success': position.Profit > 0, 'table-danger': position.Profit < 0}"
          style="text-align: right">{{position.ProfitPercentage | number:'1.0-2'}}</td>
       </tr>
-      <tr >
+      <tr>
         <th></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td style="text-align: right"><strong>Total: </strong></td>
+        <td class="d-none d-lg-table-cell"></td>
+        <td class="d-none d-lg-table-cell"></td>
+        <td class="d-none d-lg-table-cell"></td>
+        <td class="d-none d-lg-table-cell"></td>
+        <td class="d-none d-lg-table-cell" style="text-align: right"><strong>Total: </strong></td>
         <td [ngClass]="{'table-success': CoinPositionsData.TotalProfitAmount > 0, 'table-danger': CoinPositionsData.TotalProfitAmount < 0}"
           style="text-align: right" ><strong>{{CoinPositionsData.TotalProfitAmount | number:'1.0-2'}} CHF</strong></td>
         <td [ngClass]="{'table-success': CoinPositionsData.TotalProfitAmount > 0, 'table-danger': CoinPositionsData.TotalProfitAmount < 0}"
